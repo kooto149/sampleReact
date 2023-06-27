@@ -1,0 +1,10 @@
+diff a/src/app/App.jsx b/src/app/App.jsx	(rejected hunks)
+@@ -3,7 +3,7 @@
+ function App() {
+   return (
+     <div className="App">
+-      안녕
++      안녕2
+     </div>
+   );
+ }
