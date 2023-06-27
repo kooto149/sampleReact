@@ -3,7 +3,7 @@
 function App() {
   return (
     <div className="App">
-      안녕하세요.
+      안녕3
     </div>
   );
 }
