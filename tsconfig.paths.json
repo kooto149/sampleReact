@@ -1,14 +1,14 @@
 {
     "compilerOptions": {
-      "baseUrl": "./src",
+      "baseUrl": ".",
       "paths": {
-        "@pages/*": ["./pages/*"],
-        "@components/*": ["./components/*"],
-        "@routes/*": ["./routes/*"],
-        "@hooks/*": ["./hooks/*"],
+        "@pages/*": ["src/pages/*"],
+        "@components/*": ["src/components/*"],
+        "@routes/*": ["src/routes/*"],
+        "@hooks/*": ["src/hooks/*"],
 
-        "@utils": ["./utils/index.ts"],
-        "@utils/*": ["./utils/*"]
+        "@utils": ["src/utils/index.ts"],
+        "@utils/*": ["src/utils/*"]
         
       }
     }
