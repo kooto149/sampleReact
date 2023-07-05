@@ -29,7 +29,7 @@ function UtilHome() {
         <ButtonGroup className="me-2">
           <Button
             onClick={() => {
-              movePage("DateUtil");
+              movePage("dateUtil");
             }}
           >
             DateUtil
@@ -38,7 +38,7 @@ function UtilHome() {
         <ButtonGroup className="me-2">
           <Button
             onClick={() => {
-              movePage("CommonUtil");
+              movePage("commonUtil");
             }}
           >
             CommonUtil
