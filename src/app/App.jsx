@@ -1,12 +1,12 @@
 import FallbackLoader from '@components/loder/FallbackLoader';
 import { Routes, Route,useNavigate } from 'react-router-dom';
-import Header from '@pages/Header'
-import Main from '@pages/Main'
-import SamplePage from '@pages/SamplePage'
-import NotFound from '@pages/NotFound'
-import Bottom from '@pages/Bottom'
-import Util from '@pages/Util'
-import StringUtil from '@pages/StringUtil'
+import Header from '@pages/layout/Header'
+import Main from '@pages/layout/Main'
+import SamplePage from '@pages/samplePages/SamplePage'
+import NotFound from '@pages/layout/NotFound'
+import Bottom from '@pages/layout/Bottom'
+import Util from '@pages/utils/Util'
+import StringUtil from '@pages/utils/StringUtil'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 

@@ -1,7 +1,6 @@
 
 import commonUtil00 from './basis/commonUtil00';
 import stringUtil00 from './basis/stringUtil00';
-import envUtil00 from './basis/envUtil00';
 import validationUtil00 from './basis/validationUtil00';
 
 
@@ -16,10 +15,6 @@ const stringUtil = {
 };
 
 
-const envUtil = {
-	...envUtil00,
-};
-
 
 
 const validationUtil = {
@@ -31,6 +26,5 @@ const validationUtil = {
 export {
 	commonUtil,
 	stringUtil,
-	envUtil,
 	validationUtil
 };
