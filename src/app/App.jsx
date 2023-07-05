@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import { Suspense } from "react";
+import SamplePageCalendarPicker from "@pages/samplePages/SamplePageCalendarPicker";
 const App = () => {
   const navigate = useNavigate();
   window.navigate = navigate;
@@ -22,6 +23,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/SamplePage/*" element={<SamplePage />}></Route>
+        <Route path="/SamplePageCalendarPicker/*" element={<SamplePageCalendarPicker />}></Route>
         <Route path="/Util/*" element={<UtilHome />}></Route>
         <Route path="/StringUtil/*" element={<StringUtil />}></Route>
         <Route path="/Component/*" element={<Component />}></Route>
