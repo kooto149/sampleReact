@@ -23,7 +23,7 @@ function UtilHome() {
               movePage("validationUtil");
             }}
           >
-            validationUtil
+            ValidationUtil
           </Button>
         </ButtonGroup>
         <ButtonGroup className="me-2">
