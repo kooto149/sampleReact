@@ -1,0 +1,251 @@
+// Typography
+@mixin text24 {
+	font-size: var(--t1-font-size);
+	letter-spacing: -0.5px;
+	line-height: var(--t1-line-height);
+	@content;
+}
+
+@mixin text22 {
+	font-size: var(--t2-font-size);
+	letter-spacing: -0.5px;
+	line-height: var(--t2-line-height);
+	@content;
+}
+
+@mixin text20 {
+	font-size: var(--t3-font-size);
+	letter-spacing: -0.5px;
+	line-height: var(--t3-line-height);
+	@content;
+}
+
+@mixin text18 {
+	font-size: var(--t4-font-size);
+	letter-spacing: -0.5px;
+	line-height: var(--t4-line-height);
+	@content;
+}
+
+@mixin text16 {
+	font-size: var(--t5-font-size);
+	letter-spacing: -0.5px;
+	line-height: var(--t5-line-height);
+	@content;
+}
+
+@mixin text14 {
+	font-size: var(--t6-font-size);
+	letter-spacing: -0.5px;
+	line-height: var(--t6-line-height);
+	@content;
+}
+
+@mixin text14-1 {
+	font-size: var(--t6-font-size);
+	letter-spacing: -0.5px;
+	line-height: var(--t6-1-line-height);
+	@content;
+}
+
+@mixin text13 {
+	font-size: var(--t7-font-size);
+	letter-spacing: -0.5px;
+	line-height: var(--t7-line-height);
+	@content;
+}
+
+@mixin text12 {
+	font-size: var(--t8-font-size);
+	letter-spacing: -0.5px;
+	line-height: var(--t8-line-height);
+	@content;
+}
+
+@mixin text11 {
+	font-size: var(--t9-font-size);
+	letter-spacing: -0.5px;
+	line-height: var(--t9-line-height);
+	@content;
+}
+
+@mixin text10 {
+	font-size: var(--t10-font-size);
+	letter-spacing: -0.5px;
+	line-height: var(--t10-line-height);
+	@content;
+}
+
+// box-shadow
+@mixin shadow01 {
+	box-shadow: 0px 0px 8px rgba(22, 37, 66, 0.06);
+}
+
+@mixin shadow02 {
+	box-shadow: 0px 2px 6px rgba(22, 37, 66, 0.08);
+}
+
+@mixin shadow03 {
+	box-shadow: 0px 2px 6px rgba(22, 37, 66, 0.1);
+}
+
+@mixin shadow04 {
+	box-shadow: 0px 0px 8px rgba(22, 37, 66, 0.16);
+}
+
+@mixin shadow05 {
+	box-shadow: 0px 3px 12px 2px rgba(22, 37, 66, 0.12);
+}
+
+@mixin shadow06 {
+	box-shadow: 0px 0px 24px 2px rgba(22, 37, 66, 0.2);
+}
+
+@mixin hidden {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+// $line-cnt : 라인 수
+// $line-height : line-height값
+// 사용법 : @include ellipsis(3, 1.6em);
+@mixin ellipsis($line-cnt, $line-height) {
+	display: -webkit-box;
+	overflow: hidden;
+	max-height: $line-height * $line-cnt; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $line-cnt; /* 라인수 */
+	line-height: $line-height;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+}
+
+@mixin icon-fit-full($size, $icon-name, $icon-name-active: '') {
+	width: $size;
+	height: $size;
+	background: url(~@styles/assets/images/icon/#{$icon-name}.svg) no-repeat center center / $size
+		$size;
+	vertical-align: bottom;
+
+	@if $icon-name-active != '' {
+		&.active {
+			background-image: url(~@styles/assets/images/icon/#{$icon-name-active}.svg);
+		}
+	}
+}
+
+/* dividers
+	custom 예시
+	@include dividers-full {
+		border-width: 0;
+		border-bottom-width: 1px;
+	}
+*/
+@mixin dividers-full {
+	border-width: 0;
+	border-style: solid;
+	border-color: $greyscale200;
+	border-top-width: 1px;
+	@content;
+}
+
+@mixin dividers-group {
+	border-width: 0;
+	border-style: solid;
+	border-color: $greyscale100;
+	border-top-width: 8px;
+	@content;
+}
+
+@mixin dividers-middle {
+	border-width: 0;
+	border-style: solid;
+	border-color: $greyscale300;
+	border-top-width: 1px;
+	@content;
+}
+
+/* custom 예시
+	@include dividers-inset {
+		&::before {
+			top: auto;
+			bottom: 0;
+		}
+	}
+*/
+@mixin dividers-inset {
+	position: relative;
+	z-index: 1;
+
+	&::before {
+		position: absolute;
+		z-index: 10;
+		top: 0;
+		right: 51px;
+		left: 51px;
+		display: block;
+		border-width: 0;
+		border-style: solid;
+		border-color: $greyscale300;
+		border-top-width: 1px;
+		content: '';
+	}
+	@content;
+}
+
+@mixin progress-bar(
+	$width: 100%,
+	$thick: 8px,
+	$background: $primary800,
+	$animation: progress 0.5s ease-in-out forwards 0.15s 1,
+	$borderRadius: 8px
+) {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	width: $width;
+	height: $thick;
+	background: $greyscale200;
+	border-radius: $borderRadius;
+	@content;
+
+	.bar {
+		position: absolute;
+		z-index: 10;
+		top: 0;
+		left: 0;
+		height: $thick;
+		animation: $animation;
+		background: $background;
+		border-radius: $borderRadius;
+	}
+}
+
+@mixin banner-wrap($margin: 12px 0 0) {
+	margin: $margin;
+	text-align: center;
+	img {
+		max-width: 100%;
+		margin: 0 auto;
+	}
+}
+
+@mixin make-card-border {
+	border: 1px solid $borderCard;
+	border-radius: $borderRadiusCard;
+}
+
+@keyframes progress {
+	0% {
+		width: 0;
+	}
+
+	100% {
+		width: var(--percent);
+	}
+}

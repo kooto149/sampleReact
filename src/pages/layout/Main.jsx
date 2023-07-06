@@ -1,13 +1,12 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import shCommon from "@commmons/shCommon"
 function Main(){
     return (
         <Fragment>
             <h1>메인페이지</h1>
             <div>
                 <ul>
-                    <li onClick={movePage}>샘플페이지</li>
-                    <Link to="/product/2"><li>2번상품</li></Link>
+                    <li onClick={movePage}>alert 컴포넌트 테스트</li>
                 </ul>
             </div>
         </Fragment>
@@ -15,6 +14,9 @@ function Main(){
 }
 
 const movePage  = ()=>{
-	window.navigate('/SamplePage',{});
+	//window.navigate('/SamplePage',{});
+    shCommon.showAlert(
+        `alert테스트`,
+    );
 }
 export default Main;

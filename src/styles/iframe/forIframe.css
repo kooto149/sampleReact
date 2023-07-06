@@ -1,0 +1,4 @@
+#finCertSdkIframe {
+	padding: constant(safe-area-inset-top) 0 constant(safe-area-inset-bottom);
+	padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}

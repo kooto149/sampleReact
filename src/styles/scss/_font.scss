@@ -1,0 +1,20 @@
+@font-face {
+	font-family: 'shinhan';
+	font-style: normal;
+	font-weight: 300;
+	src: local('OneShinhanLight'), url(../fonts/OneShinhanLight.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'shinhan';
+	font-style: normal;
+	font-weight: 500;
+	src: local('OneShinhanMedium'), url(../fonts/OneShinhanMedium.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'shinhan';
+	font-style: normal;
+	font-weight: 700;
+	src: local('OneShinhanBold'), url(../fonts/OneShinhanBold.woff) format('woff');
+}

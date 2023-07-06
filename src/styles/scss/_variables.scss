@@ -1,0 +1,317 @@
+// header height
+$headerHeight: 48;
+
+// color
+// 서비스 전반을 구성하는 메인 컬러로 핵심 콘텐츠 및 컴포넌트에 사용합니다.
+$primary900: #1150c5;
+$primary800: #0471e9;
+$primary700: #368ded;
+$primary600: #59a1f1;
+$primary500: #87bbf5;
+$primary400: #a5ccf7;
+$primary300: #c3ddfa;
+$primary200: #d7e8fb;
+$primary100: #e5f0fc;
+
+// 사용자에게 시각적 피드백을 줄때 사용하며 필요에 따라 밝거나 어두운 단계를 사용할 수도 있습니다.
+$secondaryBlue900: #1150c5;
+$secondaryBlue800: #0471e9;
+$secondaryRed500: #d61111;
+$secondaryRed700: #d61111;
+$secondaryViolet: #5f74fb;
+$secondaryGreen: #00bfa5;
+$secondaryYellow: #feda4a;
+$secondaryGold: #ae986b;
+
+// 특정 서비스를 표현하거나 서브 브랜드를 보조하는 컬러입니다.
+$gradientMain: linear-gradient(91.03deg, #40baff 0%, #0471e9 100%);
+$gradientHeyYoung: linear-gradient(91.03deg, #71a3ff 0%, #7c64fa 100%);
+$gradientMy: linear-gradient(91.03deg, #00b4d3 0%, #25d4a2 100%);
+
+// 상품 카테고리에서 제한적으로 사용합니다.(07/14 사용 안함(디자인 정의를 형태로 따름)
+// $accountDeposit: #2998e6;
+// $accountSavings: #19a1c4;
+// $accountLoan: #bb84a5;
+// $accountTrust: #19a1c4;
+// $accountFund: #2ea672;
+// $accountForeignExchange: #8d80ba;
+// $accountGoldSilver: #928374;
+// $accountISA: #4f7fb9;
+// $accountIRP: #d87b63;
+$accountInsurance: #db7676;
+
+// greyscale
+$black: #000;
+$greyscale900: #121619;
+$greyscale800: #21272a;
+$greyscale700: #343a3f;
+$greyscale600: #565c63;
+$greyscale500: #808892;
+$greyscale550: #6c747e;
+$greyscale400: #b9c1c9;
+$greyscale300: #d6dbe1;
+$greyscale250: #e1e6ec;
+$greyscale200: #ebeff5;
+$greyscale100: #f3f6fb;
+$greyscale50: #f8f9fc;
+$white: #fff;
+
+// White 컬러를 기본으로 Grey 50, Grey100을 보조하여 사용합니다.
+$backgroundWhite: #fff;
+$backgroundGrey50: #f8f9fb;
+$backgroundGrey100: #f3f6fb;
+
+// 페이지 내에서 특정 컨텐츠가 명확히 구분될 필요가 있을때 Grey 100을 사용합니다.
+$groupBar: #f3f6f8;
+
+// 영역을 구분할 때 사용하는 모든 라인은 Grey 300을 사용합니다.
+// 인풋, 드롭다운 아웃 라인 보더
+$border: $greyscale300;
+// 카드, 체크박스 아웃 라인 보더
+$borderCard: $greyscale250;
+// 카드 내 영역 나누는 보더
+$borderDivider: $greyscale200;
+$borderRadiusCard: 12px;
+
+// dim
+$dimBlack: rgba(#000, 0.6);
+$dimWhite: rgba(#fff, 0.6);
+
+$labelLine01: #405ab5;
+$labelLine02: #315bc4;
+$labelLine03: #215da1;
+$labelLine04: #0065ad;
+$labelLine05: #006a85;
+$labelLine06: #00867a;
+$labelLine07: #007056;
+$labelLine08: #2f7d00;
+$labelLine09: #606b14;
+$labelLine10: #78593a;
+$labelLine11: #97491c;
+$labelLine12: #ad333e;
+$labelLine13: #c23266;
+$labelLine14: #a9377e;
+$labelLine15: #7c43a8;
+$labelLine16: #8937c8;
+$labelLine17: #565c63;
+
+$labelLineBorder01: #8c9cd3;
+$labelLineBorder02: #839ddc;
+$labelLineBorder03: #7a9ec7;
+$labelLineBorder04: #66a3ce;
+$labelLineBorder05: #66a6b6;
+$labelLineBorder06: #66b6af;
+$labelLineBorder07: #66a99a;
+$labelLineBorder08: #82b166;
+$labelLineBorder09: #a0a672;
+$labelLineBorder10: #ae9b89;
+$labelLineBorder11: #c19277;
+$labelLineBorder12: #ce858b;
+$labelLineBorder13: #da84a3;
+$labelLineBorder14: #cb87b2;
+$labelLineBorder15: #b08ecb;
+$labelLineBorder16: #b887de;
+$labelLineBorder17: #9a9da1;
+
+$labelBackground01: #0471e9;
+$labelBackground02: #008479;
+$labelBackground03: #25863e;
+$labelBackground04: #b85d09;
+$labelBackground05: #d54417;
+$labelBackground06: #d61111;
+$labelBackground07: #1150c5;
+$labelBackground08: #353f49;
+$labelBackground09: #6c747e;
+$labelBackground10: #f8f9fc;
+$labelLabelColor10: #6c747e;
+// 디자인은 11 ~ 16까지 없음
+$labelBackground11: #ed5736;
+$labelBackground12: #f74462;
+$labelBackground13: #e5f0fc;
+$labelBackground14: #f2f4f6;
+$labelBackground15: #f3f6fb;
+$labelBackground16: #fbeef0;
+
+$labelShadow01: 0 4px 4px rgb(247 68 98 / 15%);
+$labelShadow02: 0 4px 4px rgb(18 22 25 / 8%);
+
+$labelTintColor01: #0471e9;
+$labelTintColor02: #121619;
+$labelTintColor03: #b9c1c9;
+$labelTintColor04: #df3143;
+$labelTintBackground01: #e5f0fc;
+$labelTintBackground02: #f2f4f6;
+$labelTintBackground03: #f3f6fb;
+// 20220721기준 06이 #fae9eb 컬러로 정의되어 있으나 라벨 컬러가 업데이트 되면서 번호 자체가 바뀜
+// 기존에는 04로 사용되던 것들(에러표시)가 06으로 바뀌고 04에는 녹색으로 정의된 컬러로 변경
+// 편의상 04에 바뀐 컬러를 할당하고 새롭게 정의할 녹색은 06에 할당
+$labelTintBackground04: #fae9eb;
+
+$iconSize: 24px;
+
+$cardColor01: #d0e8fd;
+$cardColor02: #e4dffd;
+$cardColor03: #fee0ed;
+$cardColor04: #fed9d9;
+$cardColor05: #feeab9;
+$cardColor06: #c8f4e2;
+$cardColor07: #c8f8f4;
+
+$cardSubColor01: #95ccff;
+$cardSubColor02: #c6b9ff;
+$cardSubColor03: #ffb8eb;
+$cardSubColor04: #ffa9a9;
+$cardSubColor05: #ffd15b;
+$cardSubColor06: #81e8bd;
+$cardSubColor07: #81efe8;
+
+$cardBorderColor01: #cee2f3;
+$cardBorderColor02: #e5d8fb;
+$cardBorderColor03: #fddced;
+$cardBorderColor04: #f5e8bf;
+$cardBorderColor05: #d8eecb;
+$cardBorderColor06: #cde8ed;
+
+$logoBackground01: #e2f0fb;
+$logoBackground02: #f3edfe;
+$logoBackground03: #feedf5;
+$logoBackground04: #fff7dc;
+$logoBackground05: #e9f8e1;
+$logoBackground06: #e2f3f5;
+
+:export {
+	border: $border;
+	// accountDeposit: $accountDeposit;
+	// accountForeignExchange: $accountForeignExchange;
+	// accountFund: $accountFund;
+	// accountGoldSilver: $accountGoldSilver;
+	// accountIRP: $accountIRP;
+	// accountISA: $accountISA;
+	// accountInsurance: $accountInsurance;
+	// accountLoan: $accountLoan;
+	// accountSavings: $accountSavings;
+	// accountTrust: $accountTrust;
+	backgroundGrey100: $backgroundGrey100;
+	backgroundGrey50: $backgroundGrey50;
+	backgroundWhite: $backgroundWhite;
+	black: $black;
+	greyscale100: $greyscale100;
+	greyscale200: $greyscale200;
+	greyscale300: $greyscale300;
+	greyscale400: $greyscale400;
+	greyscale50: $greyscale50;
+	greyscale500: $greyscale500;
+	greyscale600: $greyscale600;
+	greyscale700: $greyscale700;
+	greyscale800: $greyscale800;
+	greyscale900: $greyscale900;
+	groupBar: $groupBar;
+	labelBackground01: $labelBackground01;
+	labelBackground02: $labelBackground02;
+	labelBackground03: $labelBackground03;
+	labelBackground04: $labelBackground04;
+	labelBackground05: $labelBackground05;
+	labelBackground06: $labelBackground06;
+	labelBackground07: $labelBackground07;
+	labelBackground08: $labelBackground08;
+	labelBackground09: $labelBackground09;
+	labelBackground10: $labelBackground10;
+	labelLabelColor10: $labelLabelColor10;
+	labelBackground11: $labelBackground11;
+	labelBackground12: $labelBackground12;
+	labelBackground13: $labelBackground13;
+	labelBackground14: $labelBackground14;
+	labelBackground15: $labelBackground15;
+	labelBackground16: $labelBackground16;
+	labelBackground17: $secondaryRed700;
+	labelLine01: $labelLine01;
+	labelLine02: $labelLine02;
+	labelLine03: $labelLine03;
+	labelLine04: $labelLine04;
+	labelLine05: $labelLine05;
+	labelLine06: $labelLine06;
+	labelLine07: $labelLine07;
+	labelLine08: $labelLine08;
+	labelLine09: $labelLine09;
+	labelLine10: $labelLine10;
+	labelLine11: $labelLine11;
+	labelLine12: $labelLine12;
+	labelLine13: $labelLine13;
+	labelLine14: $labelLine14;
+	labelLine15: $labelLine15;
+	labelLine16: $labelLine16;
+	labelLine17: $labelLine17;
+	labelLineBorder01: $labelLineBorder01;
+	labelLineBorder02: $labelLineBorder02;
+	labelLineBorder03: $labelLineBorder03;
+	labelLineBorder04: $labelLineBorder04;
+	labelLineBorder05: $labelLineBorder05;
+	labelLineBorder06: $labelLineBorder06;
+	labelLineBorder07: $labelLineBorder07;
+	labelLineBorder08: $labelLineBorder08;
+	labelLineBorder09: $labelLineBorder09;
+	labelLineBorder10: $labelLineBorder10;
+	labelLineBorder11: $labelLineBorder11;
+	labelLineBorder12: $labelLineBorder12;
+	labelLineBorder13: $labelLineBorder13;
+	labelLineBorder14: $labelLineBorder14;
+	labelLineBorder15: $labelLineBorder15;
+	labelLineBorder16: $labelLineBorder16;
+	labelLineBorder17: $labelLineBorder17;
+	labelTintColor01: $labelTintColor01;
+	labelTintColor02: $labelTintColor02;
+	labelTintColor03: $labelTintColor03;
+	labelTintColor04: $labelTintColor04;
+	labelTintBackground01: $labelTintBackground01;
+	labelTintBackground02: $labelTintBackground02;
+	labelTintBackground03: $labelTintBackground03;
+	labelTintBackground04: $labelTintBackground04;
+
+	labelShadow01: $labelShadow01;
+	labelShadow02: $labelShadow02;
+	primary100: $primary100;
+	primary200: $primary200;
+	primary300: $primary300;
+	primary400: $primary400;
+	primary500: $primary500;
+	primary600: $primary600;
+	primary700: $primary700;
+	primary800: $primary800;
+	primary900: $primary900;
+	secondaryBlue800: $secondaryBlue800;
+	secondaryGold: $secondaryGold;
+	secondaryGreen: $secondaryGreen;
+	secondaryRed500: $secondaryRed500;
+	secondaryRed700: $secondaryRed700;
+	secondaryViolet: $secondaryViolet;
+	secondaryYellow: $secondaryYellow;
+	white: $white;
+	headerHeight: $headerHeight;
+	cardColor01: $cardColor01;
+	cardColor02: $cardColor02;
+	cardColor03: $cardColor03;
+	cardColor04: $cardColor04;
+	cardColor05: $cardColor05;
+	cardColor06: $cardColor06;
+	cardColor07: $cardColor07;
+	cardSubColor01: $cardSubColor01;
+	cardSubColor02: $cardSubColor02;
+	cardSubColor03: $cardSubColor03;
+	cardSubColor04: $cardSubColor04;
+	cardSubColor05: $cardSubColor05;
+	cardSubColor06: $cardSubColor06;
+	cardSubColor07: $cardSubColor07;
+	cardBorderColor01: $cardBorderColor01;
+	cardBorderColor02: $cardBorderColor02;
+	cardBorderColor03: $cardBorderColor03;
+	cardBorderColor04: $cardBorderColor04;
+	cardBorderColor05: $cardBorderColor05;
+	cardBorderColor06: $cardBorderColor06;
+
+	logoBackground01: $logoBackground01;
+	logoBackground02: $logoBackground02;
+	logoBackground03: $logoBackground03;
+	logoBackground04: $logoBackground04;
+	logoBackground05: $logoBackground05;
+	logoBackground06: $logoBackground06;
+}

@@ -1,0 +1,656 @@
+@import '@styles/scss/_variables';
+@import '@styles/scss/_mixins';
+
+// .anchor {
+// 	&:focus {
+
+// 	border: 1px solid red;
+// 	}
+// }
+
+html,
+body {
+	overflow: hidden;
+	position: relative; //INFO: safe-area 제어와 관련된 옵션 주석했었으나 퍼블 가이드대로 주석 해제함
+	z-index: 1; //INFO: safe-area 제어와 관련된 옵션 주석했었으나 퍼블 가이드대로 주석 해제함
+	height: 100vh; //INFO: safe-area 제어와 관련된 옵션 주석했었으나 퍼블 가이드대로 주석 해제함
+	user-select: none; //INFO: safe-area 제어와 관련된 옵션 주석했었으나 퍼블 가이드대로 주석 해제함
+	-webkit-touch-callout: none; //INFO: safe-area 제어와 관련된 옵션 주석했었으나 퍼블 가이드대로 주석 해제함
+}
+
+html {
+	--t1-font-size: 24px;
+	--t2-font-size: 22px;
+	--t3-font-size: 20px;
+	--t4-font-size: 18px;
+	--t5-font-size: 16px;
+	--t6-font-size: 14px;
+	--t7-font-size: 13px;
+	--t8-font-size: 12px;
+	--t9-font-size: 11px;
+	--t10-font-size: 10px; // 디자인 공통에서 사라짐
+
+	--t1-line-height: 36px;
+	--t2-line-height: 32px;
+	--t3-line-height: 32px;
+	--t4-line-height: 28px;
+	--t5-line-height: 24px;
+	--t6-line-height: 24px;
+	--t6-1-line-height: 20px;
+	--t7-line-height: 20px;
+	--t8-line-height: 18px;
+	--t9-line-height: 16px;
+	--t10-line-height: 15px; // 디자인 공통에서 사라짐
+}
+
+html.large-text,
+[class*='App'].large-text {
+	--t1-font-size: 26px;
+	--t2-font-size: 24px;
+	--t3-font-size: 22px;
+	--t4-font-size: 20px;
+	--t5-font-size: 18px;
+	--t6-font-size: 16px;
+	--t7-font-size: 14px;
+	--t8-font-size: 13px;
+	--t9-font-size: 12px;
+	--t10-font-size: 12px; // 디자인 공통에서 사라짐
+
+	--t1-line-height: 36px;
+	--t2-line-height: 36px;
+	--t3-line-height: 32px;
+	--t4-line-height: 32px;
+	--t5-line-height: 28px;
+	--t6-line-height: 24px;
+	--t6-1-line-height: 24px;
+	--t7-line-height: 24px;
+	--t8-line-height: 20px;
+	--t9-line-height: 18px;
+	--t10-font-size: 12px; // 디자인 공통에서 사라짐
+}
+
+.table-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	strong {
+		@include text14 {
+			font-weight: 500;
+			color: $greyscale900;
+		}
+	}
+
+	svg {
+		max-width: 24px;
+	}
+
+	+ .table {
+		margin-top: 12px;
+	}
+}
+
+.table,
+.highcharts-data-table {
+	position: relative;
+	z-index: 0;
+	border-top: 1px solid $greyscale900;
+
+	.align-center {
+		text-align: center;
+	}
+
+	.align-right {
+		text-align: right;
+	}
+
+	table {
+		width: 100%;
+		background-color: $backgroundWhite;
+		.topline {
+			position: relative;
+			z-index: 1;
+			&:after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 10;
+				border-top: 1px solid $greyscale900;
+			}
+		}
+
+		th {
+			padding: 10px;
+			@include text14 {
+				font-weight: 300;
+				color: $greyscale900;
+			}
+		}
+
+		td {
+			padding: 10px;
+			@include text14 {
+				font-weight: 300;
+				color: $greyscale600;
+			}
+		}
+
+		th,
+		td {
+			border-right: 1px solid $greyscale200;
+			border-bottom: 1px solid $greyscale200;
+			vertical-align: middle;
+			&:first-child label {
+				padding-left: 24px;
+				height: 24px;
+			}
+			&:last-child {
+				border-right-color: transparent;
+				&[rowspan] {
+					border-left: 1px solid $greyscale200;
+				}
+			}
+		}
+
+		thead {
+			background-color: $greyscale50;
+			text-align: center;
+		}
+
+		tbody,
+		tfoot {
+			th {
+				background-color: $greyscale50;
+			}
+		}
+	}
+
+	&.non-line {
+		padding: 16px 0;
+		border-bottom: 1px solid $greyscale200;
+
+		&::after {
+			display: none;
+		}
+
+		tr,
+		th,
+		td {
+			padding: 0;
+			border: 0;
+			background-color: transparent;
+			vertical-align: top;
+		}
+
+		th {
+			color: $greyscale600;
+			font-weight: 300;
+		}
+
+		td {
+			color: $greyscale900;
+		}
+
+		tr + tr {
+			th,
+			td {
+				padding-top: 8px;
+			}
+		}
+
+		tfoot {
+			th,
+			td {
+				padding-top: 8px;
+			}
+		}
+
+		&.type02 {
+			border: 0;
+
+			table {
+				border-bottom: 0;
+
+				.border-bottom {
+					border-bottom: 1px solid $greyscale600;
+
+					th,
+					td {
+						padding-bottom: 12px;
+					}
+				}
+			}
+		}
+
+		&.type03 {
+			padding: 0;
+			border-bottom: 0;
+			table {
+				tr {
+					border-bottom: 1px solid $greyscale200;
+				}
+				th,
+				td {
+					padding: 16px 0;
+				}
+			}
+		}
+	}
+}
+
+.btn-copy {
+	display: flex;
+	cursor: pointer;
+	background: url(~@styles/assets/images/icon/ic24_line_copy.png) no-repeat right center;
+	background-size: 20px auto;
+	padding-right: 20px;
+	> * {
+		margin-left: 5px;
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}
+
+.text-break {
+	display: block;
+}
+
+.list-container-wrap {
+	.list-title {
+		padding-bottom: 7px;
+
+		@include text14 {
+			color: $greyscale900;
+		}
+	}
+
+	dl,
+	ul,
+	ol {
+		@include text14 {
+			color: $greyscale600;
+			font-weight: 300;
+		}
+	}
+
+	.list-wrap {
+		&.list-flex {
+			li {
+				display: flex;
+				justify-content: space-between;
+			}
+		}
+
+		li {
+			& + li {
+				margin-top: 2px;
+			}
+
+			.name {
+				font-weight: 300;
+			}
+
+			.value {
+				display: block;
+				color: $greyscale900;
+
+				&.text-right {
+					text-align: right;
+				}
+			}
+		}
+	}
+
+	.list-define-wrap {
+		dt::before {
+			margin-right: 4px;
+			content: '-';
+		}
+	}
+}
+
+// $iosSafeZoneLegacy: constant(safe-area-inset-bottom); //INFO: safe-area 제어와 관련된 옵션 주석 처리함
+// $iosSafeZoneLegacyTop: constant(safe-area-inset-top); //INFO: safe-area 제어와 관련된 옵션 주석 처리함
+// $iosSafeZone: env(safe-area-inset-bottom); //INFO: safe-area 제어와 관련된 옵션 주석 처리함
+// $iosSafeZoneTop: env(safe-area-inset-top); //INFO: safe-area 제어와 관련된 옵션 주석 처리함
+
+.sol-wrap {
+	--bottomSpace: 16px;
+
+	// v1.3 기준
+	// 단독 사용 : lever1
+	--defaultSpace: 40px;
+
+	//INFO: safe-area 제어와 관련된 옵션 주석 처리함
+	// @supports (padding-bottom: constant(safe-area-inset-bottom)) {
+	// 	--bottomSpace: calc(16px + constant(safe-area-inset-bottom));
+	// 	--defaultSpace: calc(40px + constant(safe-area-inset-bottom));
+	// }
+
+	//INFO: safe-area 제어와 관련된 옵션 주석 처리함
+	// @supports (padding-bottom: env(safe-area-inset-bottom)) {
+	// 	--bottomSpace: calc(16px + env(safe-area-inset-bottom));
+	// 	--defaultSpace: calc(40px + env(safe-area-inset-bottom));
+	// }
+
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding-bottom: var(--defaultSpace);
+	height: 100%;
+	overflow-y: scroll;
+	overscroll-behavior: none;
+
+	// 사용하지 않는 기능으로 주석
+	// 하단 버튼 화면 스크롤시 숨기는 css, sol-wrap에 scrolling 클래스로 컨트롤
+	// &.scrolling {
+	// 	.bottom-button {
+	// 		transform: translateY(100%);
+	// 	}
+	// }
+}
+
+[data-role='accordion-contents'] {
+	overflow: hidden;
+	transition: height 0.3s ease-in-out;
+}
+
+.dividers-full {
+	@include dividers-full;
+}
+
+.dividers-group {
+	@include dividers-group;
+}
+
+.dividers-middle {
+	@include dividers-middle;
+}
+
+.dividers-inset {
+	@include dividers-inset;
+}
+
+.text-break {
+	display: block;
+}
+
+.color-primary {
+	color: $secondaryBlue800;
+}
+
+.color-secondary {
+	color: $secondaryRed500;
+}
+
+.number-plus,
+.number-min {
+	@include text14 {
+		font-weight: 300;
+	}
+
+	display: inline-block;
+	color: $secondaryRed700;
+
+	&::before {
+		display: inline-block;
+		margin-right: 3px;
+		content: '';
+		border: 6px solid $secondaryRed700;
+		border-width: 10px 6px;
+		border-color: transparent transparent $secondaryRed700;
+	}
+
+	&.number-min {
+		color: $secondaryBlue800;
+
+		&::before {
+			transform: translateY(10px);
+			border-color: $secondaryBlue800 transparent transparent;
+		}
+	}
+}
+
+.list-pair-sub-text {
+	@include text12 {
+		color: $greyscale550;
+		font-weight: 300;
+	}
+}
+
+.list-share-wrap {
+	display: flex;
+	justify-content: center;
+	padding-top: 8px;
+
+	&.type01 {
+		$gap: 82px;
+
+		> * {
+			margin-left: $gap;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+	&.type02 {
+		$gap: 64px;
+
+		> * {
+			margin-left: $gap;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+	&.type03 {
+		justify-content: space-around;
+		.list {
+			position: relative;
+			[class*='tooltip-wrap'] {
+				position: static;
+
+				[class*='tooltip-text'] {
+					right: -16px;
+
+					&::after,
+					&::before {
+						right: 40px;
+					}
+				}
+			}
+		}
+	}
+	&.type04 {
+		$gap: 32px;
+
+		> * {
+			margin-left: $gap;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+
+		justify-content: flex-start;
+	}
+	&.type05 {
+		$gap: 40px;
+		justify-content: space-evenly;
+
+		.list {
+			position: relative;
+			[class*='tooltip-wrap'] {
+				position: static;
+
+				[class*='tooltip-text'] {
+					right: -16px;
+
+					&::after,
+					&::before {
+						right: 40px;
+					}
+				}
+			}
+		}
+	}
+
+	.list {
+		.icon-wrap {
+			display: inline-block;
+			width: 48px;
+			line-height: 0;
+			position: relative;
+			z-index: 1;
+
+			img {
+				width: 100%;
+			}
+
+			.message-lottie {
+				width: 30px;
+				height: 32px;
+				position: absolute;
+				top: 4px;
+				left: -3px;
+				z-index: 10;
+			}
+		}
+
+		.text {
+			display: block;
+			margin-top: 8px;
+
+			@include text14 {
+				color: $greyscale900;
+				font-weight: 300;
+			}
+		}
+	}
+}
+
+.menu-list {
+	&.security-landing {
+		[class*='accordion-wrap'] [class*='accordion-list-wrap'] {
+			& > button[type='button'] {
+				padding-top: 16px;
+				padding-bottom: 16px;
+			}
+		}
+	}
+	[class*='list-item'] {
+		@include dividers-full {
+			border-width: 0;
+			border-bottom-width: 1px;
+		}
+	}
+	[class*='accordion-wrap'] [class*='accordion-list-wrap'] {
+		@include dividers-full {
+			border-width: 0;
+			border-bottom-width: 1px;
+		}
+
+		[class*='accordion-content'] {
+			& > [class*='inner'] {
+				padding-bottom: 16px;
+
+				& > button {
+					width: 100%;
+					padding: 8px 0;
+					text-align: left;
+
+					@include text14 {
+						color: $greyscale600;
+						font-weight: 300;
+					}
+				}
+			}
+		}
+	}
+}
+
+// 바텀 버튼 className
+.bottom-button {
+	justify-self: flex-end;
+	margin-top: auto;
+	margin-bottom: calc(-1 * var(--defaultSpace));
+	padding: 40px 20px 0;
+	background-color: $white;
+	transition: transform 200ms ease-in-out;
+	will-change: transform;
+
+	&.bottom-button-sticky::before,
+	[class*='drawer-wrap'] ~ &::before {
+		position: absolute;
+		z-index: 10;
+		left: 0;
+		right: 0;
+		bottom: 100%;
+		display: block;
+		height: 16px;
+		background: linear-gradient(180deg, rgba($white, 0) 0%, $white 100%);
+		content: '';
+	}
+
+	&::after {
+		display: block;
+		width: 100%;
+		// height: $iosSafeZoneLegacy; //INFO: safe-area 제어와 관련된 옵션 주석 처리함
+		// height: $iosSafeZone; //INFO: safe-area 제어와 관련된 옵션 주석 처리함
+		min-height: var(--bottomSpace);
+		content: '';
+	}
+
+	&.bottom-button-sticky {
+		position: sticky;
+		z-index: 100;
+		right: 0;
+		bottom: calc(-1 * var(--defaultSpace));
+		left: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		flex: 1 0 auto;
+		margin-top: 40px;
+		padding-top: 0;
+	}
+
+	[class*='drawer-wrap'] ~ & {
+		--bottomSpace: 16px;
+
+		// v1.3 기준
+		// 단독 사용 : lever1
+		--defaultSpace: 40px;
+
+		//INFO: safe-area 제어와 관련된 옵션 주석 처리함
+		// @supports (padding-bottom: constant(safe-area-inset-bottom)) {
+		// 	--bottomSpace: calc(16px + constant(safe-area-inset-bottom));
+		// 	--defaultSpace: calc(40px + constant(safe-area-inset-bottom));
+		// }
+
+		//INFO: safe-area 제어와 관련된 옵션 주석 처리함
+		// @supports (padding-bottom: env(safe-area-inset-bottom)) {
+		// 	--bottomSpace: calc(16px + env(safe-area-inset-bottom));
+		// 	--defaultSpace: calc(40px + env(safe-area-inset-bottom));
+		// }
+
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 10;
+		padding-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+.iframe-wrap {
+	// padding: $iosSafeZoneLegacyTop 0 $iosSafeZoneLegacy; //INFO: safe-area 제어와 관련된 옵션 주석 처리함
+	// padding: $iosSafeZoneTop 0 $iosSafeZone; //INFO: safe-area 제어와 관련된 옵션 주석 처리함
+	padding: 0; //INFO: safe-area 제어와 관련된 처리
+}

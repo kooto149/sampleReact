@@ -1,0 +1,277 @@
+@import '@styles/scss/_variables';
+@import '@styles/scss/_mixins';
+
+.modal-popup-wrap {
+	$spaceSide: 16px;
+	$spaceTop: 24px;
+	$spaceTopBig: 32px;
+	$iconSize: 24px;
+	$spaceTitleTop: 14px;
+
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	padding: 0 20px;
+
+	.btn-popup-close {
+		position: absolute;
+		z-index: 10;
+		top: $spaceTitleTop;
+		right: $spaceSide;
+		width: $iconSize;
+		height: $iconSize;
+		background: url(~@styles/assets/images/icon/icon-modal-close01.svg) no-repeat center center /
+			$iconSize $iconSize;
+	}
+
+	.popup-inner {
+		animation: popup-animation 0.25s;
+
+		@keyframes popup-animation {
+			from {
+				opacity: 0;
+				transform: scale(0.9);
+			}
+
+			to {
+				opacity: 1;
+				transform: scale(1);
+			}
+		}
+	}
+
+	.hidden {
+		@include hidden;
+	}
+
+	.dim {
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: $dimBlack;
+	}
+
+	&.default {
+		&.noline .scroll-wrap {
+			border: 0;
+		}
+
+		&.close {
+			.popup-title {
+				padding-right: calc($spaceSide + $iconSize);
+			}
+
+			.popup-inner .scroll-wrap:first-child .popup-content h2 {
+				padding: 16px calc($spaceSide + $iconSize) 16px 0;
+			}
+		}
+
+		.popup-inner .scroll-wrap {
+			padding: 0;
+		}
+
+		.scroll-wrap .popup-content {
+			.desc.desc-primary {
+				margin-top: 2px;
+
+				@include text12 {
+					color: $primary800;
+					text-align: center;
+				}
+			}
+		}
+	}
+
+	&.confirm {
+		.popup-inner {
+			.popup-title {
+				& + .scroll-wrap {
+					padding-top: 16px;
+				}
+			}
+
+			.scroll-wrap {
+				padding-top: 24px;
+			}
+		}
+	}
+
+	&.code .popup-inner {
+		.popup-title {
+			padding-bottom: 8px;
+
+			@include text16 {
+				color: $greyscale900;
+			}
+		}
+
+		.scroll-wrap {
+			position: relative;
+			z-index: 1;
+			overflow: auto;
+			max-height: 185px;
+			padding: 0 16px;
+
+			.popup-content {
+				.code {
+					position: sticky;
+					z-index: 10;
+					top: 0;
+					left: 0;
+					display: block;
+					padding-bottom: 5px;
+					background: $white;
+
+					@include text14-1 {
+						color: $secondaryRed500;
+						font-weight: 300;
+					}
+				}
+
+				.content-text {
+					margin-top: 11px;
+				}
+			}
+		}
+
+		.content-btn-wrap {
+			margin-top: 16px;
+			text-align: center;
+		}
+
+		.popup-btn-wrap {
+			margin-top: 16px;
+		}
+	}
+
+	&.alert .popup-inner {
+		.scroll-wrap:first-child {
+			padding: {
+				top: $spaceTop;
+				bottom: $spaceSide;
+			}
+		}
+
+		.scroll-wrap .popup-content {
+			.desc {
+				@include text14 {
+					color: $greyscale600;
+					font-weight: 300;
+				}
+			}
+		}
+	}
+
+	&.checkbox .popup-inner {
+		.scroll-wrap .popup-content {
+			[class*='checkbox-wrap'] {
+				margin-top: 32px;
+
+				label {
+					color: $greyscale500;
+					font-weight: 300;
+				}
+			}
+		}
+	}
+
+	&.alert-type01 .popup-inner .scroll-wrap {
+		&:first-child {
+			padding: {
+				top: $spaceTopBig;
+				bottom: $spaceTopBig;
+			}
+		}
+
+		.popup-content {
+			.desc {
+				@include text16;
+
+				& + .desc {
+					margin-top: 12px;
+				}
+
+				&.primary800 {
+					color: $primary800;
+				}
+			}
+		}
+	}
+
+	&.alert-type02 .popup-inner .scroll-wrap {
+		.desc-detail {
+			margin-top: 24px;
+		}
+	}
+
+	.popup-inner {
+		position: relative;
+		z-index: 1000;
+		min-width: 335px;
+		background: $backgroundWhite;
+		border-radius: $borderRadiusCard;
+
+		.popup-title {
+			padding: $spaceTitleTop $spaceSide 0;
+
+			h2,
+			.title {
+				@include text16 {
+					color: $greyscale900;
+					font-weight: 500;
+				}
+			}
+		}
+
+		.scroll-wrap {
+			padding: $spaceSide;
+
+			.popup-content {
+				@include text14 {
+					color: $greyscale600;
+					font-weight: 300;
+				}
+
+				.desc {
+					@include text14 {
+						color: $greyscale600;
+						font-weight: 300;
+					}
+
+					&.center {
+						text-align: center;
+					}
+				}
+			}
+		}
+
+		.popup-btn-wrap {
+			$gap: 8px;
+
+			display: flex;
+			flex-wrap: wrap;
+			padding: 0 $spaceSide $spaceSide;
+
+			> * {
+				margin-left: $gap;
+
+				&:first-child {
+					margin-left: 0;
+				}
+			}
+
+			button {
+				flex: 1;
+			}
+		}
+	}
+}
