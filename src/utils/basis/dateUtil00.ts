@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 /**
  * number 를 string 으로 변환한다 - 한자리 숫자일 경우 앞에 0을 붙여서 변환한다
  *
@@ -27,11 +29,17 @@ const sbWeekDay = (date: string) => {
 	let getDate = null;
 	let dateArray = null;
 
-	// const week = new Array('일','월','화','수','목','금','토');
+	const week = new Array('일요일','월요일','화요일','수요일','목요일','금요일','토요일');
 
 	if (date === null || date === '') {
 		return null;
 	}
+
+	var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+	date = date.replace(reg,'');
+
+	date = date.slice(0,4) + '.' + date.slice(4,6) + '.'  + date.slice(6,8);
+
 
 	dateArray = date.split('.');
 
@@ -41,7 +49,7 @@ const sbWeekDay = (date: string) => {
 		parseInt(dateArray[2], 10),
 	);
 
-	rtnDate = String(getDate.getDay()); // week[getDate.getDay()];
+	rtnDate = week[getDate.getDay()]; // week[getDate.getDay()];
 
 	return rtnDate;
 };
@@ -275,18 +283,18 @@ const sbGetBirthByVal = (sJumin1: string, sJumin2: string) => {
  *
  * @returns String 날짜
  */
-// const getDateFormatAsString = (dateValue: string | dayjs.Dayjs | Date, displayTime = false) => {
-// 	let stringDateFormat = null;
+const getDateFormatAsString = (dateValue: string | dayjs.Dayjs | Date, displayTime = false) => {
+	let stringDateFormat = null;
 
-// 	stringDateFormat = dayjs(dateValue).format(
-// 		`${!displayTime ? 'YYYY-MM-DD' : 'YYYY/MM/DD HH:mm:ss'}`,
-// 	);
+	stringDateFormat = dayjs(dateValue).format(
+		`${!displayTime ? 'YYYY-MM-DD' : 'YYYY/MM/DD HH:mm:ss'}`,
+	);
 
-// 	if (!stringDateFormat || stringDateFormat === 'Invalid Date') {
-// 		return dayjs().format(`${!displayTime ? 'YYYY-MM-DD' : 'YYYY/MM/DD HH:mm:ss'}`);
-// 	}
-// 	return stringDateFormat;
-// };
+	if (!stringDateFormat || stringDateFormat === 'Invalid Date') {
+		return dayjs().format(`${!displayTime ? 'YYYY-MM-DD' : 'YYYY/MM/DD HH:mm:ss'}`);
+	}
+	return stringDateFormat;
+};
 
 const dateUtil00 = {
 	numberToString,
@@ -300,7 +308,7 @@ const dateUtil00 = {
 	getToday,
 	checkDate,
 	sbGetBirthByVal,
-	//getDateFormatAsString,
+	getDateFormatAsString,
 };
 
 export default dateUtil00;
