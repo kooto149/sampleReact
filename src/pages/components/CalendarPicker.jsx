@@ -11,7 +11,23 @@ const CalendarPicker = ({
 	maxDate,
 	getValue = null,
 }) => {
-	const [dateValue, setDateValue] = useState(dayjs(defaultDateValue));
+
+	console.log(defaultDateValue, minDate, maxDate);
+	
+	const getDateFormatAsString = (dateValue, displayTime = false) => {
+		let stringDateFormat = null;
+	
+		stringDateFormat = dayjs(dateValue).format(
+			`${!displayTime ? 'YYYY-MM-DD' : 'YYYY/MM/DD HH:mm:ss'}`,
+		);
+	
+		if (!stringDateFormat || stringDateFormat === 'Invalid Date') {
+			return dayjs().format(`${!displayTime ? 'YYYY-MM-DD' : 'YYYY/MM/DD HH:mm:ss'}`);
+		}
+		return stringDateFormat;
+	};
+
+	const [dateValue, setDateValue] = useState(dayjs(getDateFormatAsString(defaultDateValue)));
 
 	// const checkDateInBoundary = (changeType, leftRight) => {
 	// 	if (changeType === 'year') {
@@ -77,9 +93,9 @@ const CalendarPicker = ({
 	// 	const changedDate = dateValue.format('YYYY-MM-DD');
 
 	// 	if (changedDate < minDate) {
-	// 		setDateValue(dayjs(minDate));
+	// 		setDateValue(dayjs(getDateFormatAsString(minDate)));
 	// 	} else if (changedDate > maxDate) {
-	// 		setDateValue(dayjs(maxDate));
+	// 		setDateValue(dayjs(getDateFormatAsString(maxDate)));
 	// 	}
 	// }, [dateValue, getValue, minDate, maxDate]);
 
@@ -87,60 +103,13 @@ const CalendarPicker = ({
 	// 	setDateValue(dayjs(value));
 	// };
 
+
 	return (
 		<div className='calendar-wrap'>
-			<div className='calendar-date-area'>
-				<div className='date-pick-top'>
-					<div>
-						<button
-							type="button"
-							// className={Styles.prev}
-							// onClick={() => yearChange('left')}
-						>
-							<span className="hidden">이전년도</span>
-						</button>
-						<time dateTime={dateValue.year()}>{dateValue.year()}</time>
-						<button
-							type="button"
-							// className={Styles.next}
-							// onClick={() => yearChange('right')}
-						>
-							<span className="hidden">다음년도</span>
-						</button>
-					</div>
-					<div>
-						<button
-							type="button"
-							// className={Styles.prev}
-							// onClick={() => monthChange('left')}
-						>
-							<span className="hidden">이전월</span>
-						</button>
-						<time
-							dateTime={
-								dateValue.month() + 1 < 10
-									? `0${dateValue.month() + 1}`
-									: dateValue.month() + 1
-							}
-						>
-							{dateValue.month() + 1 < 10
-								? `0${dateValue.month() + 1}`
-								: dateValue.month() + 1}
-						</time>
-						<button
-							type="button"
-							// className={Styles.next}
-							// onClick={() => monthChange('right')}
-						>
-							<span className="hidden">다음월</span>
-						</button>
-					</div>
-				</div>
-			</div>
 			<Calendar
-				value={new Date(dateValue)}
-				activeStartDate={new Date(dateValue)}
-				className='calendar-picker-area'
+				value={new Date(getDateFormatAsString(dateValue))}
+				activeStartDate={new Date(getDateFormatAsString(dateValue))}
+				// className='calendar-picker-area'
 				locale="ko-KO"
 				calendarType="US"
 				formatDay={(locale, date) =>
@@ -149,18 +118,18 @@ const CalendarPicker = ({
 				onChange={(value) => {
 					// calendarValueChanged(value);
 				}}
-				minDate={new Date(minDate)}
-				maxDate={new Date(maxDate)}
+				minDate={new Date('2023-06-01')}
+				maxDate={new Date(getDateFormatAsString(maxDate))}
 				// tileClassName={({ date }) =>
 				// 	dayOffArr.find(
 				// 		(x) =>
 				// 			x === dayjs(date).format('YYYY-MM-DD'),
 				// 	) && 'react-calendar-dayOff'
 				// }
-				tileDisabled={({ date }) =>
-					dayjs(date).get('month') !==
-					dayjs(dateValue).get('month')
-				}
+				// tileDisabled={({ date }) =>
+				// 	dayjs(getDateFormatAsString(date)).get('month') !==
+				// 	dayjs(getDateFormatAsString(dateValue)).get('month')
+				// }
 			/>
 		</div>
 	);
@@ -168,8 +137,8 @@ const CalendarPicker = ({
 
 CalendarPicker.propTypes = {
 	defaultDateValue: any,
-	minDate: string,
-	maxDate: string,
+	minDate: any,
+	maxDate: any,
 	dayOffArr: array,
 	showToday: bool,
 	getValue: any,

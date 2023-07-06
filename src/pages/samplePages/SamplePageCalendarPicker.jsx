@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import CalendarPicker from "@pages/components/CalendarPicker";
+import Calendar from 'react-calendar';
 import dayjs from 'dayjs';
+
+import 'react-calendar/dist/Calendar.css';
 import { Button } from 'react-bootstrap';
-// import { modalActions } from '@modules/redux';
 import { useDispatch } from 'react-redux';
+import Modal from 'react-modal';
 
 
 function SamplePageCalendarPicker(){
@@ -13,28 +16,31 @@ function SamplePageCalendarPicker(){
     const [selDate, setSelDate] = useState(strToday);
     const [minDate, setMinDate] = useState('20230101');
     const [maxDate, setMaxDate] = useState('20231231');
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const onClickBUtton = ()=>{
-        let popupArgs = {
-                isOpen: true,
-                id: 'popup-calendar',
-                content: () => (
-                    <CalendarPicker
-                        defaultDateValue={dayjs(selDate)}
-                        minDate={minDate}
-                        maxDate={maxDate}
-                        getValue={(value) => {
-                            console.log('getValue::' + value)
-                        }}
-                    />
-                ),
-                uiType: 'alert',
-                align: 'center',
-            };
+        // let popupArgs = {
+        //         isOpen: true,
+        //         id: 'popup-calendar',
+        //         content: () => (
+        //             <CalendarPicker
+        //                 defaultDateValue={dayjs(selDate)}
+        //                 minDate={minDate}
+        //                 maxDate={maxDate}
+        //                 getValue={(value) => {
+        //                     console.log('getValue::' + value)
+        //                 }}
+        //             />
+        //         ),
+        //         uiType: 'alert',
+        //         align: 'center',
+        //     };
 
-        dispatch(modalActions.modalPopupPortal(popupArgs));
+            console.log('selDate::' + selDate)
+            setModalIsOpen(true);
+
     };
 
     return (
@@ -75,6 +81,26 @@ function SamplePageCalendarPicker(){
             <Button
                 onClick={onClickBUtton}
             >달력</Button>
+            <div id='divCal'></div>
+            <Modal isOpen={modalIsOpen}
+            appElement={document.getElementById('root')}
+                    >
+                        <button onClick={()=> setModalIsOpen(false)}>Close</button>
+
+                        <Calendar onChange={(value) => {
+                                console.log('getValue::' + value)
+                            }} value={today} />
+                    {/* <CalendarPicker
+                            defaultDateValue={dayjs(selDate)}
+                            minDate={dayjs(minDate)}
+                            maxDate={dayjs(maxDate)}
+                            getValue={(value) => {
+                                console.log('getValue::' + value)
+                            }}
+                        /> */}
+                    
+                  </Modal>
+
              {/* <div>{this.state.bankInfo.bankNm}</div> */}
         </>
     );
