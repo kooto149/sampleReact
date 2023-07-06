@@ -1,21 +1,13 @@
-import FallbackLoader from "@components/loder/FallbackLoader";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Header from "@pages/layout/Header";
-import Main from "@pages/layout/Main";
-import SamplePage from "@pages/samplePages/SamplePageHome";
-import NotFound from "@pages/layout/NotFound";
-import Bottom from "@pages/layout/Bottom";
-import UtilHome from "@pages/utils/UtilHome";
-import StringUtil from "@pages/utils/StringUtil";
-import DateUtil from "@pages/utils/DateUtil";
-import ValidationUtil from "@pages/utils/ValidationUtil";
-import CommonUtil from "@pages/utils/CommonUtil";
+import {Header,Main,NotFound,Bottom} from "@layouts";
+import {UtilHome,StringUtil,DateUtil,CommonUtil,ValidationUtil} from "@pageutils";
 import Component from "@pages/components/ComponentHome";
-import SamplePageCalendarPicker from "@pages/samplePages/SamplePageCalendarPicker";
+import {SamplePageHome,SamplePageCalendarPicker} from "@samplePages";
+import { Suspense } from "react";
+import {ModalPopupPortal,FallbackLoader} from '@components';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-
-import { Suspense } from "react";
 
 const App = () => {
   const navigate = useNavigate();
@@ -26,7 +18,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Main />}></Route>
-        <Route path="/SamplePage/*" element={<SamplePage />}></Route>
+        <Route path="/SamplePage/*" element={<SamplePageHome />}></Route>
         <Route path="/SamplePageCalendarPicker/*" element={<SamplePageCalendarPicker />}></Route>
         <Route path="/Util/*" element={<UtilHome />}></Route>
         <Route path="/StringUtil/*" element={<StringUtil />}></Route>
@@ -38,6 +30,7 @@ const App = () => {
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
       <Bottom />
+      <ModalPopupPortal />
     </Suspense>
   );
 };
