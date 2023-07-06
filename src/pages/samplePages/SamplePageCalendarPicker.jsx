@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import CalendarPicker from "@pages/components/CalendarPicker";
 import dayjs from 'dayjs';
-
+import { Button } from 'react-bootstrap';
+// import { modalActions } from '@modules/redux';
+import { useDispatch } from 'react-redux';
 
 
 function SamplePageCalendarPicker(){
@@ -11,6 +13,29 @@ function SamplePageCalendarPicker(){
     const [selDate, setSelDate] = useState(strToday);
     const [minDate, setMinDate] = useState('20230101');
     const [maxDate, setMaxDate] = useState('20231231');
+
+    const dispatch = useDispatch();
+
+    const onClickBUtton = ()=>{
+        let popupArgs = {
+                isOpen: true,
+                id: 'popup-calendar',
+                content: () => (
+                    <CalendarPicker
+                        defaultDateValue={dayjs(selDate)}
+                        minDate={minDate}
+                        maxDate={maxDate}
+                        getValue={(value) => {
+                            console.log('getValue::' + value)
+                        }}
+                    />
+                ),
+                uiType: 'alert',
+                align: 'center',
+            };
+
+        dispatch(modalActions.modalPopupPortal(popupArgs));
+    };
 
     return (
         <>
@@ -46,8 +71,11 @@ function SamplePageCalendarPicker(){
                 // minLength='8'
                 maxLength='8'
             />
-            <CalendarPicker defaultDateValue={selDate} minDate={minDate} maxDate={maxDate} />
-            {/* <div>{this.state.bankInfo.bankNm}</div> */}
+            <span>      </span>
+            <Button
+                onClick={onClickBUtton}
+            >달력</Button>
+             {/* <div>{this.state.bankInfo.bankNm}</div> */}
         </>
     );
 

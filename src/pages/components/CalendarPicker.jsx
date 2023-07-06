@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import 'react-calendar/dist/Calendar.css';
 
 
-const CalendarPicker = ({
+const CalendarPicker = ({    
 	defaultDateValue,
 	minDate,
 	maxDate,
