@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import CalendarPicker from "@pages/components/CalendarPicker";
-import Calendar from 'react-calendar';
 import dayjs from 'dayjs';
-
 import 'react-calendar/dist/Calendar.css';
 import { Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import Modal from 'react-modal';
+import { store, modalActions } from '@modules/redux';
 
 
 function SamplePageCalendarPicker(){
@@ -16,31 +13,44 @@ function SamplePageCalendarPicker(){
     const [selDate, setSelDate] = useState(strToday);
     const [minDate, setMinDate] = useState('20230101');
     const [maxDate, setMaxDate] = useState('20231231');
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-
-    // const dispatch = useDispatch();
+    const [resDate, setResDate] = useState('');
+    const [resDateDisp, setResDateDisp] = useState('');
 
     const onClickBUtton = ()=>{
-        // let popupArgs = {
-        //         isOpen: true,
-        //         id: 'popup-calendar',
-        //         content: () => (
-        //             <CalendarPicker
-        //                 defaultDateValue={dayjs(selDate)}
-        //                 minDate={minDate}
-        //                 maxDate={maxDate}
-        //                 getValue={(value) => {
-        //                     console.log('getValue::' + value)
-        //                 }}
-        //             />
-        //         ),
-        //         uiType: 'alert',
-        //         align: 'center',
-        //     };
+        console.log('selDate::' + selDate)
 
-            console.log('selDate::' + selDate)
-            setModalIsOpen(true);
-
+        store.dispatch(
+            modalActions.modalPopupPortal({
+                id:'calendarPicker',
+                isOpen: true,
+                uiType: "confirm",
+                title:'calendar',
+                content: () => (
+                    <CalendarPicker
+                        defaultDateValue={dayjs(selDate)}
+                        minDate={dayjs(minDate)}
+                        maxDate={dayjs(maxDate)}
+                        getValue={(value) => {
+                            console.log('getValue:' + JSON.stringify(value));
+                            setResDate(value.dateValue);
+                            console.log('resDate;;' + resDate)
+                        }}
+                    />
+                ),
+                onConfirm: {
+                    confirmClick: () => {
+                        console.log('confirmClick');
+                        // debugger
+                        // setResDateDisp(resDate);
+                    },
+                },
+                onCancel: {
+                    cancelClick: () => {
+                        console.log('cancelClick');
+                    },
+                },
+            }),
+        );
     };
 
     return (
@@ -81,27 +91,16 @@ function SamplePageCalendarPicker(){
             <Button
                 onClick={onClickBUtton}
             >달력</Button>
-            <div id='divCal'></div>
-            <Modal isOpen={modalIsOpen}
-            appElement={document.getElementById('root')}
-                    >
-                        <button onClick={()=> setModalIsOpen(false)}>Close</button>
-
-                        <Calendar onChange={(value) => {
-                                console.log('getValue::' + value)
-                            }} value={today} />
-                    {/* <CalendarPicker
-                            defaultDateValue={dayjs(selDate)}
-                            minDate={dayjs(minDate)}
-                            maxDate={dayjs(maxDate)}
-                            getValue={(value) => {
-                                console.log('getValue::' + value)
-                            }}
-                        /> */}
-                    
-                  </Modal>
-
-             {/* <div>{this.state.bankInfo.bankNm}</div> */}
+            <br></br>
+            <div id='divResult'>
+                <span>결과 : </span>
+                <input
+                type='text'
+                id="ipResult"
+                value={resDate}
+                readOnly={true}
+            />
+            </div>
         </>
     );
 

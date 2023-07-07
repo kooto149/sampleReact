@@ -1,21 +1,22 @@
 import { useEffect, useRef } from 'react';
+import PropTypes, { oneOf } from 'prop-types';
 import { _ } from '@utils';
 import { useModal, useA11Y } from '@modules/hooks';
-import PropTypes from 'prop-types';
 import ModalPopupStyle from '../ModalPopup.module.scss';
 
-const ModalAlertPopup = ({
+const ModalConfirmPopup = ({
 	isOpen = false,
-	id = 'modal-alert-popup',
+	id = 'modal-confirm-popup',
 	title,
 	content = null,
 	align = 'left',
 	onConfirm = { confirmClick: null, confirmBtnTitle: '확인' },
-	closeBtn, 
+	onCancel = { cancelClick: null, cancelBtnTitle: '취소' },
 	zIndex,
 }) => {
-	const { handleModalConfirmClick, modalCloseEvent } = useModal();
+	const { handleModalConfirmClick, handleModalCancelClick } = useModal();
 	const { confirmClick, confirmBtnTitle } = onConfirm;
+	const { cancelClick, cancelBtnTitle } = onCancel;
 	const { modalA11Y } = useA11Y(isOpen);
 	const rootRef = useRef();
 	const siblingRef = useRef({
@@ -25,8 +26,8 @@ const ModalAlertPopup = ({
 
 	useEffect(() => {
 		siblingRef.current = {
-			previous: rootRef.current?.previousSibling,
-			next: rootRef.current?.nextSibling,
+			previous: rootRef.current.previousSibling,
+			next: rootRef.current.nextSibling,
 		};
 	}, []);
 
@@ -50,7 +51,7 @@ const ModalAlertPopup = ({
 				{isOpen && (
 					<div
 						id={id}
-						className={`${ModalPopupStyle['modal-popup-wrap']} ${ModalPopupStyle['alert']}`}
+						className={`${ModalPopupStyle['modal-popup-wrap']} ${ModalPopupStyle['confirm']}`}
 						role="dialog"
 						style={{ zIndex }}
 						ref={rootRef}
@@ -82,7 +83,7 @@ const ModalAlertPopup = ({
 									)}
 									{typeof content === 'function' &&
 										content(
-											`${ModalPopupStyle['desc']} ${ModalPopupStyle[align]}`,
+											`${ModalPopupStyle['desc']}}  ${ModalPopupStyle[align]}`,
 										)}
 									{typeof content !== 'function' &&
 										typeof content !== 'string' &&
@@ -90,18 +91,31 @@ const ModalAlertPopup = ({
 								</div>
 							</div>
 							<div className={ModalPopupStyle['popup-btn-wrap']}>
-								<button onClick={() =>
+								<button
+									onClick={() =>
+										handleModalCancelClick({
+											cancelClick,
+											uiType: 'confirm',
+										})
+									}
+								>
+									{cancelBtnTitle === null || _.trim(cancelBtnTitle) === ''
+										? '취소'
+										: cancelBtnTitle}
+								</button>
+								<button
+									onClick={() =>
 										handleModalConfirmClick({
 											confirmClick,
-											uiType: 'alert',
+											uiType: 'confirm',
 										})
-									}>확인</button>
+									}
+								>
+									{confirmBtnTitle === null || _.trim(confirmBtnTitle) === ''
+										? '확인'
+										: confirmBtnTitle}
+								</button>
 							</div>
-							{/* start : 추가 : 20220622 알럿 모달 X 아이콘 닫기 버튼 추가 */}
-							{closeBtn && (
-								<button>팝업닫기</button>
-							)}
-							{/* end : 추가 : 20220622 알럿 모달 X 아이콘 닫기 버튼 추가 */}
 						</div>
 					</div>
 				)}
@@ -110,24 +124,32 @@ const ModalAlertPopup = ({
 	);
 };
 
-ModalAlertPopup.propTypes = {
+ModalConfirmPopup.propTypes = {
 	id: PropTypes.string,
-	title: PropTypes.string,
-	align: PropTypes.string,
+	title: PropTypes.oneOfType([
+		PropTypes.arrayOf(PropTypes.node),
+		PropTypes.node,
+		PropTypes.func,
+		PropTypes.string,
+	]),
 	content: PropTypes.oneOfType([
 		PropTypes.arrayOf(PropTypes.node),
 		PropTypes.node,
 		PropTypes.func,
 		PropTypes.string,
 	]),
+	align: oneOf(['left', 'center']),
 	children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 	onConfirm: PropTypes.shape({
 		confirmClick: PropTypes.func,
 		confirmBtnTitle: PropTypes.string,
 	}),
+	onCancel: PropTypes.shape({
+		cancelClick: PropTypes.func,
+		cancelBtnTitle: PropTypes.string,
+	}),
 	isOpen: PropTypes.bool,
-	closeBtn: PropTypes.bool,
 	zIndex: PropTypes.number,
 };
 
-export default ModalAlertPopup;
+export default ModalConfirmPopup;

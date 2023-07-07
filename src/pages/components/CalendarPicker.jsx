@@ -27,105 +27,52 @@ const CalendarPicker = ({
 		return stringDateFormat;
 	};
 
+	////////////////////
+
 	const [dateValue, setDateValue] = useState(dayjs(getDateFormatAsString(defaultDateValue)));
 
-	// const checkDateInBoundary = (changeType, leftRight) => {
-	// 	if (changeType === 'year') {
-	// 		const minDateYear = dayjs(minDate).format('YYYY');
-	// 		const maxDateYear = dayjs(maxDate).format('YYYY');
-	// 		const currentDateValue = dateValue;
+	useLayoutEffect(() => {
+		if (getValue) {
+			const isDayOff = !!(
+				dateValue.get('day') === 0 ||
+				dateValue.get('day') === 6 
+			);
+			const dateValueObject = {
+				dateValue: dateValue.format('YYYY-MM-DD'),
+				isDayOff,
+			};
 
-	// 		if (leftRight === 'left') {
-	// 			if (`${currentDateValue.year() - 1}` < minDateYear) {
-	// 				return false;
-	// 			}
-	// 		} else if (leftRight === 'right') {
-	// 			if (`${currentDateValue.year() + 1}` > maxDateYear) {
-	// 				return false;
-	// 			}
-	// 		}
-	// 	} else if (changeType === 'month') {
-	// 		const minDateYearMonth = dayjs(minDate).format(
-	// 			'YYYY-MM',
-	// 		);
-	// 		const maxDateYearMonth = dayjs(maxDate).format(
-	// 			'YYYY-MM',
-	// 		);
+			getValue(dateValueObject);
+		}
 
-	// 		const calcDateValue = dateValue
-	// 			.add(leftRight === 'left' ? -1 : 1, 'month')
-	// 			.format('YYYY-MM');
+		const changedDate = dateValue.format('YYYY-MM-DD');
 
-	// 		if (calcDateValue < minDateYearMonth || calcDateValue > maxDateYearMonth) return false;
-	// 	}
-	// 	return true;
-	// };
+		if (changedDate < minDate) {
+			setDateValue(dayjs(getDateFormatAsString(minDate)));
+		} else if (changedDate > maxDate) {
+			setDateValue(dayjs(getDateFormatAsString(maxDate)));
+		}
+	}, [dateValue, getValue, minDate, maxDate]);
 
-	// const yearChange = (leftRight) => {
-	// 	if (!checkDateInBoundary('year', leftRight)) return;
-	// 	setDateValue(dateValue.add(leftRight === 'left' ? -1 : 1, 'year').set('date', 1));
-	// };
-
-	// const monthChange = (leftRight) => {
-	// 	if (!checkDateInBoundary('month', leftRight)) return;
-	// 	if (
-	// 		(leftRight === 'left' && dateValue.month() - 1 === -1) ||
-	// 		(leftRight === 'right' && dateValue.month() + 1 === 12)
-	// 	)
-	// 		return;
-	// 	setDateValue(dateValue.add(leftRight === 'left' ? -1 : 1, 'month').set('date', 1));
-	// };
-
-	// useLayoutEffect(() => {
-	// 	if (getValue) {
-	// 		const isDayOff = !!(
-	// 			dateValue.get('day') === 0 ||
-	// 			dateValue.get('day') === 6 
-	// 		);
-	// 		const dateValueObject = {
-	// 			dateValue: dateValue.format('YYYY-MM-DD'),
-	// 			isDayOff,
-	// 		};
-
-	// 		getValue(dateValueObject);
-	// 	}
-
-	// 	const changedDate = dateValue.format('YYYY-MM-DD');
-
-	// 	if (changedDate < minDate) {
-	// 		setDateValue(dayjs(getDateFormatAsString(minDate)));
-	// 	} else if (changedDate > maxDate) {
-	// 		setDateValue(dayjs(getDateFormatAsString(maxDate)));
-	// 	}
-	// }, [dateValue, getValue, minDate, maxDate]);
-
-	// const calendarValueChanged = (value) => {
-	// 	setDateValue(dayjs(value));
-	// };
-
+	const calendarValueChanged = (value) => {
+		setDateValue(dayjs(value));
+	};
 
 	return (
 		<div className='calendar-wrap'>
 			<Calendar
 				value={new Date(getDateFormatAsString(dateValue))}
-				activeStartDate={new Date(getDateFormatAsString(dateValue))}
-				// className='calendar-picker-area'
+				// activeStartDate={new Date(getDateFormatAsString(dateValue))}
 				locale="ko-KO"
 				calendarType="US"
 				formatDay={(locale, date) =>
 					dayjs(date).format('D')
 				}
 				onChange={(value) => {
-					// calendarValueChanged(value);
+					calendarValueChanged(value);
 				}}
-				minDate={new Date('2023-06-01')}
+				minDate={new Date(getDateFormatAsString(minDate))}
 				maxDate={new Date(getDateFormatAsString(maxDate))}
-				// tileClassName={({ date }) =>
-				// 	dayOffArr.find(
-				// 		(x) =>
-				// 			x === dayjs(date).format('YYYY-MM-DD'),
-				// 	) && 'react-calendar-dayOff'
-				// }
 				// tileDisabled={({ date }) =>
 				// 	dayjs(getDateFormatAsString(date)).get('month') !==
 				// 	dayjs(getDateFormatAsString(dateValue)).get('month')
@@ -139,7 +86,6 @@ CalendarPicker.propTypes = {
 	defaultDateValue: any,
 	minDate: any,
 	maxDate: any,
-	dayOffArr: array,
 	showToday: bool,
 	getValue: any,
 };

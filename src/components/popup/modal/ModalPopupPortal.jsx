@@ -1,6 +1,6 @@
 import { useModal } from '@modules/hooks';
 import {
-	ModalAlertPopup,
+	ModalAlertPopup,ModalConfirmPopup
 } from '@components';
 
 export const ModalPopupPortal = () => {
@@ -34,6 +34,19 @@ export const ModalPopupPortal = () => {
 				onConfirm={onConfirm}
 				closeBtn={closeBtn}
 				zIndex={zIndex}
+			/>
+		);
+	}else if (uiType === "confirm") {
+		comp = (
+			<ModalConfirmPopup
+				isOpen={isOpen}
+				id={id}
+				title={title}
+				content={content}
+				onConfirm={onConfirm}
+				onCancel={onCancel}
+				zIndex={zIndex}
+				align={align}
 			/>
 		);
 	}
