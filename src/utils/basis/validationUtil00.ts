@@ -44,21 +44,6 @@ const hasLowerCase = (v: string) => {
 };
 
 /**
- * 숫자가 있는지 없는지 판단
- *
- * @param v
- *
- * @returns
- *
- * 확인
- */
-const hasNumber = (v: string) => {
-	const regExp: RegExp = /[0-9]/g;
-
-	return regExp.test(v);
-};
-
-/**
  * 적합한 문자열로 구성된 id 인지 확인
  *
  * @param idValue
@@ -150,39 +135,15 @@ const birth6digits = (birthValue: string) => {
 	return regExp.test(birthValue);
 };
 
-// todo: 주민번호 validation
-/**
- * Resident Registration Number
- */
-const rrn = () => {};
-
-// todo: email domain validation
-/**
- * 제대로 된 이메일 주소 도메인 형식인지
- *
- * @param v
- *
- * @returns
- *
- * 확인
- */
-const email = (v: string) => {
-	const regExp: RegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-
-	return regExp.test(v);
-};
 
 const validationUtil00 = {
 	hasSpecialCharacter,
 	hasUpperCase,
 	hasLowerCase,
-	hasNumber,
 	id,
 	password,
 	birth,
 	birth6digits,
-	rrn,
-	email,
 };
 
 export default validationUtil00;
