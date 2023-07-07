@@ -7,22 +7,35 @@ import { useState } from "react";
 function ValidationUtil() {
   // 특수문자 공통함수 계산
   const calValidation = (val) => {
-    const rs = validationUtil00.hasSpecialCharacter(val);
+    const rs = validationUtil00.hasSpecialCharacter(val.input);
     return rs ? "true" : "false";
   };
 
   // 영문 대문자 공통함수 계산
   const calUpperCase = (val) => {
-    const rs = validationUtil00.hasUpperCase(val);
+    const rs = validationUtil00.hasUpperCase(val.input);
     return rs ? "true" : "false";
   };
 
   // 영문 대문자 공통함수 계산
   const calLowerCase = (val) => {
-    const rs = validationUtil00.hasLowerCase(val);
+    const rs = validationUtil00.hasLowerCase(val.input);
     return rs ? "true" : "false";
   };
 
+  // 8자리 생일 유효성 판단
+  const calBirth8 = (val) => {
+    const rs = validationUtil00.birth(val.input);
+    return rs ? "true" : "false";
+  };
+
+  // 6자리 생일 유효성 판단
+  const calBirth6 = (val) => {
+    const rs = validationUtil00.birth6digits(val.input);
+    return rs ? "true" : "false";
+  };
+
+  // 샘플
   const sampleInputTwo = (val) => {
     return JSON.stringify(val);
   };
@@ -34,12 +47,11 @@ function ValidationUtil() {
   // 함수리스트(카드리스트) 컴포넌트
   // inputTitArr = [{title: '', placeholder:''}, ]
   const FunctionListComp = ({ title, description, calFunc, inputTitArr }) => {
-    debugger;
-    const [inputValue, setInputValue] = useState();
+    //const [inputValue, setInputValue] = useState();
     const [inputValue2, setInputValue2] = useState({});
     const [result, setResult] = useState();
     const calFuncBase = () => {
-      setResult(calFunc(inputValue));
+      setResult(calFunc(inputValue2));
     };
 
     return (
@@ -53,27 +65,27 @@ function ValidationUtil() {
           {inputTitArr && inputTitArr.length > 0 ? (
             inputTitArr.map((item, idx) => {
               return (
-                <>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Text id={idx}>{item.title}</InputGroup.Text>
-                    <Form.Control
-                      key={idx}
-                      placeholder={item.placeholder}
-                      aria-label=""
-                      aria-describedby={idx}
-                      onChange={(val) => {
-                        setInputValue2((prev) => {
-                          return {
-                            ...prev,
-                            [item.title]: val.target.value,
-                          };
-                        });
+                <InputGroup className="mb-3" key={`group${idx}`}>
+                  <InputGroup.Text id={`title${idx}`}>
+                    {item.title}
+                  </InputGroup.Text>
+                  <Form.Control
+                    key={`text${idx}`}
+                    placeholder={item.placeholder}
+                    aria-label=""
+                    aria-describedby={idx}
+                    onChange={(val) => {
+                      setInputValue2((prev) => {
+                        return {
+                          ...prev,
+                          [item.title]: val.target.value,
+                        };
+                      });
 
-                        setInputValue(inputValue2);
-                      }}
-                    />
-                  </InputGroup>
-                </>
+                      //setInputValue(inputValue2);
+                    }}
+                  />
+                </InputGroup>
               );
             })
           ) : (
@@ -138,21 +150,34 @@ function ValidationUtil() {
         title={"hasSpecialCharacter"}
         description={"특수문자 유무 판단"}
         calFunc={calValidation}
-        inputTitArr={[{ title: "문자열" }]}
+        inputTitArr={[{ title: "input" }]}
       ></FunctionListComp>
       <FunctionListComp
         title={"hasUpperCase"}
         description={"영문 대문자 유무 판단"}
         calFunc={calUpperCase}
-        inputTitArr={[{ title: "문자열" }]}
+        inputTitArr={[{ title: "input" }]}
       ></FunctionListComp>
       <FunctionListComp
         title={"hasLowerCase"}
         description={"영문 소문자 유무 판단"}
         calFunc={calLowerCase}
-        inputTitArr={[{ title: "문자열" }]}
+        inputTitArr={[{ title: "input" }]}
+      ></FunctionListComp>
+      <FunctionListComp
+        title={"birth"}
+        description={"8자리 생일 유효성 판단"}
+        calFunc={calBirth8}
+        inputTitArr={[{ title: "input" }]}
+      ></FunctionListComp>
+      <FunctionListComp
+        title={"birth6digits"}
+        description={"6자리 생일 유효성 판단"}
+        calFunc={calBirth6}
+        inputTitArr={[{ title: "input" }]}
       ></FunctionListComp>
 
+      {/* 샘플↓ */}
       <FunctionListComp
         title={"sample"}
         description={"input이 두개~"}
